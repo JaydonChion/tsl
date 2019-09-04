@@ -1,0 +1,112 @@
+{{define "indexlayout"}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>EIstint</title>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+  <meta http-equiv="cache-control" content="max-age=800" />
+  <meta http-equiv="cache-control" content="Private" />
+  <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+<link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+
+<script src="js/jquery-3.4.1.min.js"  crossorigin="anonymous"></script>
+<script src="js/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+
+<!-- <script src="https://unpkg.com/@ionic/core@latest/dist/ionic.js"></script>
+<link href="https://unpkg.com/@ionic/core@latest/css/ionic.bundle.css" rel="stylesheet"> -->
+
+
+<!-- <meta name="theme-color" content="#FF0000"/> -->
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.json">
+
+<style>
+
+
+  .signuptextlabel{
+    color:lightgray; 
+    margin-top: 3vh;
+  }
+  .signuptextlabel:hover{
+    color: darkgray;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+  {{template "form" .}}
+
+
+
+
+
+<script>
+
+//check cookie for error message
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function deleteCookie(name) {
+  document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
+
+
+$(document).ready(function(){
+  var errorMsg = getCookie("error_message");
+  if (errorMsg != "") {
+  alert(errorMsg);
+  deleteCookie("error_message");
+
+  }
+
+});
+
+
+
+
+
+</script>
+
+  <script src="js/app.js" async></script>
+
+</body>
+</html>
+{{end}}

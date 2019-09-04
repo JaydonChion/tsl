@@ -1,0 +1,106 @@
+{{define "form"}}
+
+<script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core@4.6.2/dist/ionic/ionic.esm.js"></script>
+<script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core@4.6.2/dist/ionic/ionic.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/@ionic/core@4.6.2/css/ionic.bundle.css" rel="stylesheet">
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '2151640661796022',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v4.0'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+<center>
+
+  <img style="margin-top:10vh;max-height:20vh;" src="/img/logo.png"><span style="font-size: 55pt;margin-left: -8vw;color: rgb(148, 176, 163);font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">EIStint</span>
+<form style="margin-top:5vh;padding-left: 5vw;padding-right: 5vw;" action="/authenticate" method="POST">
+<ion-item class="loginInput">
+    <ion-label position="floating">Email</ion-label>
+    <ion-input name="email" type="email" required></ion-input>
+  </ion-item>
+
+  <ion-item class="loginInput">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input name="password" type="Password" required></ion-input>
+    </ion-item>
+
+    <ion-button style="margin-top:5vh;" type="submit" color="secondary">Login</ion-button>
+
+  </form>
+
+<br>
+
+
+<fb:login-button 
+scope="public_profile,email"
+onlogin="checkLoginState();">
+</fb:login-button>
+
+
+
+  <p class="signuptextlabel" onclick="location.href = '/signup';">Register New Account</p>
+</center>
+
+
+<script>
+
+function checkLoginState() {
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+}
+
+function getInfo(){
+  FB.api('/me','GET',{fields:'name,id,email'},function(response){
+    var request = new XMLHttpRequest();
+    // POST to httpbin which returns the POST data as JSON
+    request.open('POST', '/fb_login', /* async = */ false);
+
+    var formData = new FormData();
+    formData.append('name', response.name);
+    formData.append('email', response.email);
+    formData.append('id', response.id);
+
+    request.onreadystatechange = function() {
+    if (request.readyState == XMLHttpRequest.DONE) {
+      if (request.responseText=="noinfo"){
+        window.location.href = "/addinfo"
+      }else{
+        location.reload();
+
+      }
+    }
+}
+
+    request.send(formData);
+  });
+}
+
+function statusChangeCallback(response) {
+
+                if (response.status === 'connected') {
+                  getInfo();
+                  } else {
+                    alert("Unable to login with facebook")
+                }
+            }
+
+
+
+</script>
+{{end}}
