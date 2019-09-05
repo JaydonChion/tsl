@@ -4,10 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"net/url"
-	"os"
 )
 
 type Eatbookdata struct {
@@ -41,13 +39,12 @@ func getData(dataType string, latitude float64, longitude float64, distance int)
 
 	response, err := http.Get(url)
 	if err != nil {
-		fmt.Print(err.Error())
-		os.Exit(1)
+		panic(err)
 	}
 
 	responseData, err := ioutil.ReadAll(response.Body)
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 
 	err = json.Unmarshal(responseData, &books)

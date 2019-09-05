@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 	"text/template"
@@ -20,7 +19,6 @@ func viewFunction(w http.ResponseWriter, r *http.Request) {
 	latitude, err := strconv.ParseFloat(vars["latitude"], 64)
 	longitude, err := strconv.ParseFloat(vars["longitude"], 64)
 	distance, err := strconv.Atoi(vars["distance"])
-	fmt.Println(longitude)
 	if err != nil {
 	}
 

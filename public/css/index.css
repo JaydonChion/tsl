@@ -1,0 +1,68 @@
+div.scrollmenu {
+    height: 100%;
+    overflow-wrap: break-word;
+  
+    
+  }
+  
+  div.scrollmenu div {
+    display: inline-block;
+  
+  }
+  
+  .infoText{
+      display: inline;font-weight: 500;font-size: 2vh
+  }
+  
+  .infoTitle{
+      font-size: 3vh;font-weight: 500;padding-left: 1.5vw;position:relative;padding-top:2%;
+  }
+  
+  .cardDimen{
+      min-width: 40vw;margin:1vh;
+  }
+  
+  
+  @media all and (max-width: 1199px) { 
+  
+  .infoTitle{
+      font-size: 3vh;font-weight: 500;padding-left: 1.5vw;position:relative;padding-top:2%;
+  }
+  
+  .cardDimen{
+      min-width: 35vw;margin:1vh;
+  }
+   } 
+  @media all and (max-width: 991px) { 
+  
+  .infoTitle{
+      font-size: 3vh;font-weight: 500;padding-left: 1.5vw;position:relative;padding-top:2%;
+  }
+  
+  .cardDimen{
+      min-width: 95%;margin:1vh;
+  }
+   } 
+  @media all and (max-width: 768px) { 
+  
+  
+  .infoTitle{
+      font-size: 3vh;font-weight: 500;padding-left: 1.5vw;position:relative;padding-top:2%;
+  }
+  
+  .cardDimen{
+      min-width: 95%;margin:1vh;
+  }
+   } 
+  @media all and (max-width: 575px) { 
+  
+  
+  
+  .infoTitle{
+      font-size: 3vh;font-weight: 500;padding-left: 1.5vw;position:relative;padding-top:2%;
+  }
+  
+  .cardDimen{
+      width: 95%;margin:1vh;
+  }
+   }
