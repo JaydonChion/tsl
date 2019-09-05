@@ -17,6 +17,12 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 <meta name="mobile-web-app-capable" content="yes">
+<style>
+body{
+  height: 100%;
+  width: 100%;
+}
+</style>
 
 
 </head>
@@ -41,6 +47,20 @@
               <li  onclick="changeView(this.id)" id="Desserts" class="nav-item">
                 <a class="nav-link"  href="#Desserts">Desserts</a>
               </li>
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Search Range
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" onclick="setRange(this)" id="3" >3km</a>
+                    <a class="dropdown-item" onclick="setRange(this)" id="5" >5km</a>
+                    <a class="dropdown-item" onclick="setRange(this)" id="10">10km</a>
+                    <a class="dropdown-item" onclick="setRange(this)" id="15">15km</a>
+                    <a class="dropdown-item" onclick="setRange(this)" id="20">20km</a>
+
+                  </div>
+                </li>
+              
           </ul>
 
         </div>
@@ -55,6 +75,7 @@
 
 
       function changeView(id){
+        current = id;
                   var xhttp = new XMLHttpRequest();
                   var resultText = "";
                     xhttp.onreadystatechange = function() {
@@ -75,7 +96,9 @@
           
                       }
                     };
-                    var url = "/view/"+id;
+
+
+                    var url = "/view/"+id+"/"+latitude+"/"+longitude+"/"+distance;
                     xhttp.open("GET",url, true);
                     xhttp.send();  
                 }
@@ -86,6 +109,63 @@
 
       
       </script>
+
+
+<script>
+
+var longitude;
+var latitude;
+var distance=3;
+var current = "Home";
+  $(document).ready(function(){
+
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(getNearbyList,showError);
+    // getNearbyList(2);
+  } else {
+    alert("Geolocation is not supported by this browser.");
+  }
+})
+
+
+function setRange(elem){
+            distance = elem.id;
+            changeView(current);
+            
+          }
+
+
+
+//access to geolocation blocked by localhost, so i put dummy value first
+function getNearbyList(position) {
+latitude = position.coords.latitude ;
+longitude = position.coords.longitude;
+// latitude = 1.3522393521446825;
+// longitude =103.70249249921979;
+
+}
+
+function showError(error) {
+switch(error.code) {
+// case error.PERMISSION_DENIED:
+//   alert("User denied the request for Geolocation.");
+//   break;
+case error.POSITION_UNAVAILABLE:
+alert("Location information is unavailable.")
+break;
+case error.TIMEOUT:
+alert("The request to get user location timed out.");
+break;
+case error.UNKNOWN_ERROR:
+alert("An unknown error occurred.");
+break;
+default:
+alert("Please enable GPS location for better job search experience");
+break;
+}
+}
+
+</script>
 
 
 

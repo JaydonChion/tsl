@@ -11,7 +11,7 @@ func main() {
 
 	router := mux.NewRouter()
 	router.HandleFunc("/", index)
-	router.HandleFunc("/view/{page}", viewFunction)
+	router.HandleFunc("/view/{page}/{latitude}/{longitude}/{distance}", viewFunction).Methods("GET")
 
 	// router.HandleFunc("/eatbook", getEatBook)
 	// router.HandleFunc("/food", getFood)

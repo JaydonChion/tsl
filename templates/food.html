@@ -1,23 +1,85 @@
 
-<div id="displayBody">
+<style>
+div.scrollmenu {
+  height: 100%;
+  overflow-wrap: break-word;
+
+  
+}
+
+div.scrollmenu div {
+  display: inline-block;
+
+}
+
+.infoText{
+    display: inline;font-weight: 500;font-size: 2vh
+}
+
+.infoTitle{
+    font-size: 3vh;font-weight: 500;padding-left: 1.5vw;position:relative;padding-top:2%;
+}
+
+.cardDimen{
+    min-width: 40vw;margin:1vh;
+}
+</style>
+
+
+<div style="height: 90%" id="displayBody">
         {{if .}}
+        <div class="scrollmenu">
         {{range .}}
-        <div class="card" style="width: 18rem;">
+        <div class="card cardDimen">
                 <!-- <img src="..." class="card-img-top" alt="..."> -->
+                <div class="card-img-top" ><p class="card-text infoTitle">{{.EntryName}}</p>
+                </div>
                 <div class="card-body">
-                  <h5 class="card-title">{{.EntryName}}</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                 <div>
+                     <label class="infoText">Category: </label>
+                    <p class="card-text infoText">{{.Category}}</p>
+                </div> 
+                <br>
+                <div>
+                        <label class="infoText">Contact: </label>
+                       <p class="card-text infoText">{{.ContactNumber}}</p>
+                   </div> 
+                <br>
+                <br>
+
                   <a href="{{.FacebookPage}}" class="btn btn-primary">Visit fb</a>
                 </div>
               </div>
      
         {{end}}
+    </div>
 
           {{else}}
 
           
             {{end}}
 </div>
+
+
+<!-- AdminRemarks   string `json:"AdminRemarks"`
+Category       string `json:"Category"`
+ContactEmail   string `json:"ContactEmail"`
+ContactInfo    string `json:"ContactInfo"`
+ContactNumber  string `json:"ContactNumber"`
+ContactStatus  string `json:"ContactStatus"`
+EatBookArticle string `json:"EatBookArticle"`
+
+Distance       float32 `json:"Distance"`
+EntryAddress   string  `json:"EntryAddress"`
+EntryID        int     `json:"EntryID"`
+EntryName      string  `json:"EntryName"`
+FacebookPage   string  `json:"FacebookPage"`
+Latitude       float32 `json:"Latitude"`
+Longitude      float32 `json:"Longitude"`
+MasterCategory string  `json:"MasterCategory"`
+OpeningHours   string  `json:"OpeningHours"`
+PostalCode     string  `json:"PostalCode"`
+SubFilter      string  `json:"SubFilter"` -->
     
     
     

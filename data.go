@@ -34,10 +34,10 @@ type Eatbookdata struct {
 }
 
 // func getEatbookData(longitude float32,latitude float32, distance float32)(bookdatas []Eatbookdata, err error){
-func getData(dataType string) (books []Eatbookdata, err error) {
+func getData(dataType string, latitude float64, longitude float64, distance int) (books []Eatbookdata, err error) {
 	sdataType := url.QueryEscape(dataType)
 
-	url := fmt.Sprintf("https://appsbytsl.com/API/V1/Nearby/%s/t5LD3v/1.319190/103.857834/3", sdataType)
+	url := fmt.Sprintf("https://appsbytsl.com/API/V1/Nearby/%s/t5LD3v/%f/%f/%d", sdataType, latitude, longitude, distance)
 
 	response, err := http.Get(url)
 	if err != nil {
