@@ -37,6 +37,7 @@ func viewFunction(w http.ResponseWriter, r *http.Request) {
 		// temp := make(map[string]interface{})
 		// temp["jobData"] = jobData
 		// temp["jobDataCat"] = categories[jobData.Job_cat]
+		getEatbookData()
 
 		err := t.Execute(w, nil)
 		if err != nil {
@@ -44,8 +45,18 @@ func viewFunction(w http.ResponseWriter, r *http.Request) {
 		}
 
 	case "Food":
+		t := template.Must(template.ParseFiles("templates/food.html"))
+		err := t.Execute(w, nil)
+		if err != nil {
+			panic(err)
+		}
 
 	case "Desserts":
+		t := template.Must(template.ParseFiles("templates/desserts.html"))
+		err := t.Execute(w, nil)
+		if err != nil {
+			panic(err)
+		}
 
 	default:
 

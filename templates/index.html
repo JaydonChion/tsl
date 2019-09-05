@@ -46,6 +46,7 @@
         </div>
       </nav>
       <div id="displayBody">
+        {{template "display" .}}
 
       </div>
 
@@ -68,7 +69,7 @@
                           }
                           
                         }else{
-                          alert("Unable to fetch information");
+                          window.location = "/"
           
                         }
           
