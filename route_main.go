@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"text/template"
 
@@ -19,44 +20,35 @@ func viewFunction(w http.ResponseWriter, r *http.Request) {
 	case "EatBook":
 		t := template.Must(template.ParseFiles("templates/eatbook.html"))
 
-		// jobData, err := getJobData(id)
-		// if err != nil {
-		// 	panic(err)
-		// }
+		data, err := getData("EatBook")
 
-		// categories := map[int]string{
-		// 	1: "Cleaning",
-		// 	2: "Courier",
-		// 	3: "Fixing",
-		// 	4: "Care service",
-		// 	5: "Sharing",
-		// 	6: "Delivery",
-		// 	7: "Others",
-		// }
-
-		// temp := make(map[string]interface{})
-		// temp["jobData"] = jobData
-		// temp["jobDataCat"] = categories[jobData.Job_cat]
-		getEatbookData()
-
-		err := t.Execute(w, nil)
 		if err != nil {
 			panic(err)
 		}
+
+		err = t.Execute(w, data)
 
 	case "Food":
 		t := template.Must(template.ParseFiles("templates/food.html"))
-		err := t.Execute(w, nil)
+		data, err := getData("Food")
+
 		if err != nil {
 			panic(err)
 		}
 
+		fmt.Println(data)
+
+		err = t.Execute(w, data)
+
 	case "Desserts":
 		t := template.Must(template.ParseFiles("templates/desserts.html"))
-		err := t.Execute(w, nil)
+		data, err := getData("Desserts")
+
 		if err != nil {
 			panic(err)
 		}
+
+		err = t.Execute(w, data)
 
 	default:
 

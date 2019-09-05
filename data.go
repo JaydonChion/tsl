@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"net/url"
 	"os"
 )
 
@@ -32,13 +33,11 @@ type Eatbookdata struct {
 	SubFilter      string  `json:"SubFilter"`
 }
 
-type EatbookCollection struct {
-	Collection []Eatbookdata
-}
-
 // func getEatbookData(longitude float32,latitude float32, distance float32)(bookdatas []Eatbookdata, err error){
-func getEatbookData() {
-	url := "https://appsbytsl.com/API/V1/Nearby/EatBook/t5LD3v/1.319190/103.857834/3"
+func getData(dataType string) (books []Eatbookdata, err error) {
+	sdataType := url.QueryEscape(dataType)
+
+	url := fmt.Sprintf("https://appsbytsl.com/API/V1/Nearby/%s/t5LD3v/1.319190/103.857834/3", sdataType)
 
 	response, err := http.Get(url)
 	if err != nil {
@@ -51,8 +50,7 @@ func getEatbookData() {
 		log.Fatal(err)
 	}
 
-	var books []Eatbookdata
-	json.Unmarshal(responseData, &books)
-	fmt.Printf("%#v", books[1])
+	err = json.Unmarshal(responseData, &books)
+	return
 
 }
