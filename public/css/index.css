@@ -4,6 +4,10 @@ div.scrollmenu {
   
     
   }
+
+  .notfound{
+      width: 30vh;
+  }
   
   div.scrollmenu div {
     display: inline-block;

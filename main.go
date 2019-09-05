@@ -21,7 +21,7 @@ func main() {
 		http.FileServer(http.Dir("public/css/"))))
 	router.PathPrefix("/js/").Handler(http.StripPrefix("/js/",
 		http.FileServer(http.Dir("public/js/"))))
-	router.PathPrefix("/img/").Handler(http.StripPrefix("/img/",
+	router.PathPrefix("/assets/").Handler(http.StripPrefix("/assets/",
 		http.FileServer(http.Dir("public/assets/"))))
 
 	server := &http.Server{

@@ -1,6 +1,45 @@
 
-<div id="displayBody">
-    <h1>i am here</h1>
+
+
+<div style="height: 90%" id="displayBody">
+        {{if .}}
+        <div class="scrollmenu">
+        {{range .}}
+        <div class="card cardDimen">
+                <!-- <img src="..." class="card-img-top" alt="..."> -->
+                <div class="card-img-top" ><p class="card-text infoTitle">{{.EntryName}}</p>
+                </div>
+                <div class="card-body">
+                 <div>
+                     <label class="infoText">Category: </label>
+                    <p class="card-text infoText">{{.Category}}</p>
+                </div> 
+                <br>
+                <div>
+                        <label class="infoText">Contact: </label>
+                       <p class="card-text infoText">{{.ContactNumber}}</p>
+                   </div> 
+                <br>
+                <br>
+
+                  <a href="{{.FacebookPage}}" class="btn btn-primary">Visit fb</a>
+                </div>
+              </div>
+     
+        {{end}}
+    </div>
+
+          {{else}}
+          <center style="margin-top:10%;">
+                <img src="assets/notfoundnoback.png" class="notfound">
+                <h5>No results found, please try to change search range</h5>
+    
+              </center>
+
+          
+            {{end}}
 </div>
 
 
+
+    
