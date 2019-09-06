@@ -16,14 +16,23 @@
                 </div> 
                 <br>
                 <div>
-                        <label class="infoText">Contact: </label>
+                        <label class="infoText">Phone: </label>
                        <p class="card-text infoText">{{.ContactNumber}}</p>
                    </div> 
                 <br>
+                <div>
+                  <label class="infoText">Email: </label>
+                 <p class="card-text infoText">{{.ContactEmail}}</p>
+             </div> 
                 <br>
 
-                  <a href="{{.FacebookPage}}" class="btn btn-primary">Visit fb</a>
-                </div>
+                <div>
+                  <a style="display: inline" href="{{.FacebookPage}}" class="btn btn-primary">Visit fb</a>
+                  {{ $length := len .EatBookArticle}} {{ if gt $length 5 }}
+                  <a style="display: inline;background-color: aqua;border: none;" href="{{.EatBookArticle}}" class="btn btn-primary">Reviews</a>
+                  {{ end }}
+                  </div>
+                                </div>
               </div>
      
         {{end}}
